@@ -8,9 +8,11 @@ os.environ.setdefault("GOOGLE_GENAI_USE_VERTEXAI", "False")
 
 @dataclass
 class AgentConfig:
-    model_backend: str = os.getenv("MODEL_BACKEND", "gemini")
+    model_backend: str = os.getenv("MODEL_BACKEND", "ollama")
     gemini_model: str = os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
     openrouter_model: str = os.getenv("OPENROUTER_MODEL", "openrouter/google/gemma-2-9b-it:free")
+    ollama_model: str = os.getenv("OLLAMA_MODEL", "gemma2:9b")
+    ollama_base_url: str = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
     mcp_server_port: int = 8090
     max_iterations: int = 50
     pii_redaction_enabled: bool = True

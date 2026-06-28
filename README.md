@@ -46,32 +46,34 @@ LogiWise (Workflow)
 
 - Python 3.11+
 - [uv](https://docs.astral.sh/uv/getting-started/installation/) — Python package manager
+- [Ollama](https://ollama.com) — Local LLM (free, no rate limits)
 
-### Setup
+### Quick Setup (Recommended)
 
 ```bash
-# Install dependencies
-uv sync
+# 1. Install Ollama (if not installed)
+#    Download from https://ollama.com
 
-# Configure API key (copy and edit)
-cp .env.example .env
-# Set your API key in .env
+# 2. Pull a model
+ollama pull gemma2:9b
+
+# 3. Install dependencies and run
+make setup   # uv sync + check Ollama
+make run     # Start server at http://localhost:18081
 ```
 
-Supported backends:
-- **Gemini** — Set `MODEL_BACKEND=gemini` and `GEMINI_API_KEY`
-- **OpenRouter** — Set `MODEL_BACKEND=openrouter` and `OPENROUTER_API_KEY`
-- **Ollama** (local) — Set `MODEL_BACKEND=ollama` and `OLLAMA_MODEL=gemma2:9b`
-
-### Run
+### Manual Setup
 
 ```bash
-# Start the web server
-uv run adk web app --host 127.0.0.1 --port 18081
-
-# Or via Makefile
+uv sync
+cp .env.example .env   # Edit to choose backend
 make run
 ```
+
+Supported backends (set `MODEL_BACKEND` in `.env`):
+- **Ollama** (default) — `MODEL_BACKEND=ollama` — No API key needed. Free, unlimited. Pull model: `ollama pull gemma2:9b`
+- **Gemini** — `MODEL_BACKEND=gemini` — Set `GOOGLE_API_KEY`
+- **OpenRouter** — `MODEL_BACKEND=openrouter` — Set `OPENROUTER_API_KEY`
 
 Open http://localhost:18081 in your browser.
 

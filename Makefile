@@ -1,6 +1,12 @@
-.PHONY: install playground run test
+.PHONY: setup install playground run test
 
 AGENT_DIR = app
+
+setup:
+	uv sync
+	@echo "Checking Ollama..."
+	@ollama --version 2>nul || echo "Install Ollama from https://ollama.com"
+	ollama pull gemma2:9b 2>nul || echo "Ollama not installed — run: ollama pull gemma2:9b"
 
 install:
 	uv sync

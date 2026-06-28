@@ -16,6 +16,8 @@ from .config import config
 _llm_model: str | LiteLlm = (
     LiteLlm(model=config.openrouter_model)
     if config.model_backend == "openrouter"
+    else LiteLlm(model=f"ollama/{config.ollama_model}", api_base=config.ollama_base_url)
+    if config.model_backend == "ollama"
     else config.gemini_model
 )
 from .tools import (
