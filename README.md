@@ -162,6 +162,17 @@ make run       # Start server at http://localhost:18081
 make test      # Run pytest
 ```
 
+## Assets
+
+![Architecture Diagram](architecture.png)
+*LogiWise architecture — user input flows through classify_intent, branches to 3 sub-agents (ShipmentTracker, WarehouseOps, InventoryIntelligence), passes through security checkpoint, and routes to human approval or final output.*
+
+![Workflow Diagram](workflow.png)
+*Workflow graph — directed edges with route labels connecting START, classify_intent, sub-agents, security_checkpoint, human_approval, final_output, and blocked_output.*
+
+![LogiWise Thumbnail](thumbnail.png)
+*Project thumbnail — "LogiWise — Logistics AI Agent" with globe wireframe, logistics routes, and warehouse/truck icons on royal dark blue background.*
+
 ## License
 
 MIT
