@@ -7,9 +7,9 @@ import os
 import sys
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
-os.environ["MODEL_BACKEND"] = "openrouter"
+os.environ["MODEL_BACKEND"] = "nvidia"
 os.environ["PYTHONIOENCODING"] = "utf-8"
-os.environ["OPENROUTER_MODEL"] = "openrouter/openrouter/free"
+os.environ["NVIDIA_MODEL"] = "nvidia/nemotron-4-340b-instruct"
 
 from google.adk.runners import Runner
 from google.adk.sessions.in_memory_session_service import InMemorySessionService
@@ -50,17 +50,28 @@ async def run(prompt: str) -> str:
 
 async def main():
     scenarios = [
-        ("List all pending orders", "Show me all pending orders"),
+        ("List all orders", "List all orders"),
         ("List all products in inventory", "List all products"),
-        ("Check inventory for Cotton Fabric", "Check inventory for Cotton Fabric Roll 50m"),
-        ("Restock a product", "Restock Cotton Fabric Roll 50m by 20"),
-        ("Verify restock worked", "Check inventory for Cotton Fabric Roll 50m"),
-        ("Add a new product", "Add a new product Silk Thread with quantity 200, min threshold 30"),
+        ("Check inventory for Bluetooth Speaker", "Check inventory for SKU-ELEC-004"),
+        ("Restock a product", "Restock Bluetooth Speakers with 20 units"),
+        ("Verify restock worked", "Check inventory for SKU-ELEC-004"),
+        ("Add a new product", "Add a new product Titanium Widget with quantity 100"),
         ("Verify new product in inventory", "List all products"),
-        ("Create a new order", "Create a new order for Rao Corp with items: Cotton Jacket:234, Silk Thread:50"),
-        ("Verify order appears", "List all orders"),
-        ("Track a shipment", "Track shipment TRK10001"),
-        ("Predict delay", "Predict delay for TRK20004"),
+        ("Create a new order", "Create an order for Walkarounds Inc with USB-C Hub:50, Packing Tape Roll:100"),
+        ("Show orders for a customer", "Show me orders for FabIndia Textiles"),
+        ("Track a shipment", "What is the status of shipment TRK20004?"),
+        ("Predict delay", "Predict delay for TRK20004 at Shanghai Port"),
+        ("Prioritize all orders", "Prioritize all orders by urgency"),
+        ("Show urgent orders", "Show urgent orders that need priority pushing"),
+        ("Calculate order margins", "Calculate margins for ORD-2004"),
+        ("Minimize losses", "Minimize losses for ORD-1004"),
+        ("Forecast demand", "Forecast demand for SKU-ELEC-004"),
+        ("Analyze customer demand", "Analyze customer demand for all customers"),
+        ("Get reorder recommendations", "Get reorder recommendations for all products"),
+        ("Customer 360 view", "Show customer 360 for CUST003"),
+        ("Search company trends", "Search company trends for textile"),
+        ("Suggest partnerships", "Suggest partnership opportunities"),
+        ("Notify customer", "Notify CUST003 about shipment delay via email"),
     ]
 
     results = []
